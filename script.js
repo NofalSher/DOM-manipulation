@@ -48,7 +48,24 @@ data.push(newUser);   // Push method used to push data in array.
 
 // Updata DOM to display users in data array
 updateDOM();
+}
+//Function to double money of all users
+function doubleMoney(){
+    //map will run function at every index of existing array and will get output and makes its array
+    data=data.map(user=>{   //overwriting previous data
+        return {...user}        //... is called as spread operator. By it out input will as it is comes at output
+        
+        //Update DOM using new user data array
+        updateDOM();
+    });
+}
 
+
+
+//Function to format random number as money
+function formatNumberToDollar(number){    // Regular expression gets our data r input and do pattern recognition and give result.
+// Regex   ----->   Regular Expression
+return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function updateDOM(userData=data){
@@ -60,11 +77,21 @@ function updateDOM(userData=data){
        const userDiv=document.createElement('div');
         userDiv.classList.add('user');
         //Add inner HTML to user div
-        userDiv.innerHTML=`<strong>${user.name}</strong> ${user.balance}`
+        userDiv.innerHTML=`<strong>${user.name}</strong> 
+                            ${formatNumberToDollar(user.balance)}`
 
         //Add the new element into DOM
         main.appendChild(userDiv)
     });   
 }
 
+//Event Listeners
+// 1.Link for click on add user button
+addUserBtn.addEventListener('click',getRandomUser)
+
+//2.Listen for click on double btn
+doubleBtn.addEventListener('click',doubleMoney)
+
+getRandomUser();
+getRandomUser();
 getRandomUser();
