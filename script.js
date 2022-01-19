@@ -36,9 +36,35 @@ const newUser={
     name:`${user.name.title} ${user.name.first} ${user.name.last}`,
     balance:Math.floor(Math.random()*1000000)
 }
-console.log(newUser);
+
 
 //Add new User in data array
 addData(newUser);
+};
+
+//Function to add user data into array
+function addData(newUser){
+data.push(newUser);   // Push method used to push data in array.
+
+// Updata DOM to display users in data array
+updateDOM();
+
 }
+
+function updateDOM(userData=data){
+    // Clear Previous UI
+    main.innerHTML='<h2><strong>User</strong> Wealth</h2>'
+
+    //Loop through user data and render that in UI
+    userData.forEach(user=>{       // forEach will perform some task for every index of an array
+       const userDiv=document.createElement('div');
+        userDiv.classList.add('user');
+        //Add inner HTML to user div
+        userDiv.innerHTML=`<strong>${user.name}</strong> ${user.balance}`
+
+        //Add the new element into DOM
+        main.appendChild(userDiv)
+    });   
+}
+
 getRandomUser();
