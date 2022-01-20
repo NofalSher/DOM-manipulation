@@ -55,6 +55,8 @@ function doubleMoney(){
     data=data.map(user=>{   //overwriting previous data
         return {...user,balance:user.balance*2}        //... is called as spread operator. By it out input will as it is comes at output
         
+        //in map function we just basically take an array and output will also be an array of same length
+
     });
     //Update DOM using new user data array
     updateDOM();
@@ -65,6 +67,12 @@ function doubleMoney(){
 
 function filterUsers(){
 data=data.filter(user=>user.balance >=1000000);      // It is iterative means run for every value and gives output based on our conditions
+//In filter array length will be different as in filter we will get just some number of value
+
+//For each will not give and array it will basically run its assigned fucntion for every index 
+// Map is not like foreach  it will perform task for all user at a time and thus it will return an array.
+
+
 //Update DOM function
 updateDOM();
 }
@@ -94,8 +102,6 @@ function totalBalance(){
     main.appendChild(balanceElement)
    
 }
-
-
 
 
 //Function to format random number as money
